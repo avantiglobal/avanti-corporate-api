@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5de639f7-3d0b-48ef-a84c-23423f41c7d1/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/avanti-website-0001",
+    "appService.deploySubpath": "."
+}
