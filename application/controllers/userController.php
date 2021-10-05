@@ -5,18 +5,19 @@ class UserController extends Controller {
     
     function beforeAction () {
         //$this->setLayout('frontend');
-        $this->setTheme('agerig');
-        $this->set('user_img','/img/user/default.jpg');
-        $this->set('user_name', 'John Doe');
+        // $this->setTheme('agerig');
+        // $this->set('user_img','/img/user/default.jpg');
+        // $this->set('user_name', 'John Doe');
+        $this->doNotRenderHTML = 1;
         //$this->set('sidebar_menu', '      ');
     }
 
-    function index(){
-        $this->set('page_header', 'Users');
-        $this->set('page_description', 'Users index page');
-        $this->set('intro', 'User');
-        $this->set('content', 'Hello World');
-    }
+    // function index(){
+    //     $this->set('page_header', 'Users');
+    //     $this->set('page_description', 'Users index page');
+    //     $this->set('intro', 'User');
+    //     $this->set('content', 'Hello World');
+    // }
 
     function new(){
         $this->doNotRenderContentHeader = 1;
@@ -36,12 +37,10 @@ class UserController extends Controller {
         $this->set('profile_img', file_exists('img/user/'.$user['id'].'.jpg') ? '/img/user/'.$user['id'].'.jpg'  : '/img/user/default.jpg');
     }
 
-    function viewall() {
-        $this->doNotRenderContentHeader = 1;
-        $this->set('page_header', 'Users');
-        $this->set('page_description', 'Users');
-        $this->set('todo',$this->User->selectAll());
-        $this->set('user','Lorem Ipsum User');
+    function all() {
+        $this->actionScope = 'public';
+        header('Content-Type: application/json');
+        echo json_encode($this->User->selectAll());
     }
 
     function add() {
@@ -221,7 +220,12 @@ class UserController extends Controller {
         // error_log("SUBMIT CONTACT FORM . Response: " . $response);
     }
 
-    
+    function api(){
+        // $this->doNotRenderHTML = 1;
+        $this->actionScope = 'public';
+        echo json_encode($this->User->selectAll());
+        // echo "test API";
+    }
     
     function afterAction() {
 

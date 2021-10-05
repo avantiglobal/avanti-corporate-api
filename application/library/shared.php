@@ -46,7 +46,7 @@ function routeURL($url) {
     global $routing;
     
     foreach ( $routing as $pattern => $result ) {
-        if ( preg_match( $pattern, $url ) ) {
+        if ( @preg_match( $pattern, $url ) ) {
             return preg_replace( $pattern, $result, $url );
         }
     }
